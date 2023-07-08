@@ -1,2 +1,3 @@
-# crux
-An insane programming language!
+# Crux
+
+An insane interpreted programming language!
