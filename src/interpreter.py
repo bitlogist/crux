@@ -10,6 +10,9 @@ class Interpreter:
   
   def read_FLT(self, value):
     return float(value)
+
+  def read_STR(self, value):
+    return str(value)
   
   def read_VAR(self, id):
     variable = self.data.read(id)
@@ -46,9 +49,9 @@ class Interpreter:
       output = 1 if left <= right else 0
     elif op.value == "?=":
       output = 1 if left == right else 0
-    elif op.value == "and":
+    elif op.value == "&":
       output = 1 if left and right else 0
-    elif op.value == "or":
+    elif op.value == "|":
       output = 1 if left or right else 0
 
     return Integer(output) if (left_type == "INT" and right_type == "INT") else Float(output)
@@ -63,7 +66,7 @@ class Interpreter:
       output = +operand
     elif operator.value == "-":
       output = -operand
-    elif operator.value == "not":
+    elif operator.value == "!":
       output = 1 if not operand else 0
     
     return Integer(output) if (operand_type == "INT") else Float(output)

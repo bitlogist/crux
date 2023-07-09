@@ -7,11 +7,13 @@ class Parser:
   def factor(self):
     if self.token.type == "INT" or self.token.type == "FLT":
       return self.token
+    elif self.token.type == "STR":
+      return self.token
     elif self.token.value == "(":
       self.move()
       expression = self.boolean_expression()
       return expression
-    elif self.token.value == "not":
+    elif self.token.value == "!":
       operator = self.token
       self.move()
       output = [operator, self.boolean_expression()]
@@ -39,8 +41,6 @@ class Parser:
       left_node = [left_node, operator, right_node]
 
     return left_node
-
-  # <bool_expr> := <comp_expr> and | or | not <comp_expr>
 
   def if_statement(self):
     self.move()
@@ -103,7 +103,7 @@ class Parser:
   def boolean_expression(self):
     left_node = self.comp_expression()
 
-    while self.token.value == "and" or self.token.value == "or":
+    while self.token.value == "&" or self.token.value == "|":
       operator = self.token
       self.move()
       right_node = self.comp_expression()
@@ -138,7 +138,7 @@ class Parser:
 
         return [left_node, operation, right_node]
 
-    elif self.token.type == "INT" or self.token.type == "FLT" or self.token.type == "OP" or self.token.value == "not":
+    elif self.token.type == "INT" or self.token.type == "FLT" or self.token.type == "OP" or self.token.value == "!":
       # Arithmetic expression
       return self.boolean_expression()
     

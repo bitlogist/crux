@@ -14,6 +14,10 @@ class Float(Token):
   def __init__(self, value):
     super().__init__("FLT", value)
 
+class String(Token):
+  def __init__(self, value):
+    super().__init__("STR", value)
+
 class Operation(Token):
   def __init__(self, value):
     super().__init__("OP", value)
@@ -25,7 +29,7 @@ class Declaration(Token):
 class Variable(Token):
   def __init__(self, value):
     super().__init__("VAR(?)", value) # Variable name, VAR, data type
-    # make a = 5 # VAR(?)
+    # var a = 5 # VAR(?)
 
 class Boolean(Token):
   def __init__(self, value):
